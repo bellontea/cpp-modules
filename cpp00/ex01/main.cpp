@@ -27,7 +27,7 @@ void search(PhoneBook &book)
 	std::cout << "****************MY PHONEBOOK*****************\n";
 	std::cout << "*********************************************\n";
 
-	std::cout << "|  INDEX   |FIRSTNAME | LASTNAME | NICKNAME |\n";
+	std::cout << "|     INDEX|FIRST NAME| LAST NAME| NICK NAME|\n";
 	std::cout << "*********************************************\n";
 	std::cout << "|          |          |          |          |\n";
 
