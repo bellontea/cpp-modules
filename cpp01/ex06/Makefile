@@ -1,4 +1,4 @@
-NAME		=	harl
+NAME		=	harlFilter
 
 SRC 		=	$(shell ls *cpp)
 OBJ			=	$(SRC:.cpp=.o)

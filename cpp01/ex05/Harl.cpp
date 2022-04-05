@@ -39,16 +39,13 @@ void Harl::complain( std::string level )
 {
 	const std::string names[] = {"DEBUG", "INFO", "WARNING", "ERROR", ""};
 	void (Harl::*funcs[4]) () = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-	int i = 0;
 	
-	for (; !names[i].empty(); i++)
+	for (int i = 0; !names[i].empty(); i++)
 	{
 		if (!level.compare(names[i]))
-			break ;
+		{
+			(this->*funcs[i])();
+			return ;
+		}
 	}
-	
-	if (i == 4)
-		return ;
-	
-	funcs[i]();
 }
