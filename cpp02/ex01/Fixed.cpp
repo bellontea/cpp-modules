@@ -50,10 +50,16 @@ Fixed& Fixed::operator=(const Fixed &object)
 
 float Fixed::toFloat( void ) const
 {
-	return (_value >> _fractional_bits);
+	return (float)_value / (1 << _fractional_bits);
 }
 
 int Fixed::toInt( void ) const
 {
-	return (float)_value / (1 << _fractional_bits);
+	return (_value >> _fractional_bits);
+}
+
+std::ostream& operator<<(std::ostream& stream, const Fixed& object)
+{
+	stream << object.toFloat();
+	return stream;
 }

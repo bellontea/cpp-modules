@@ -6,7 +6,7 @@ int replace(std::string filename, std::string s1, std::string s2)
 	std::ifstream infile;
     std::ofstream outfile;
 	std::string buffer;
-	char *buf = new char;
+	size_t pos;
 
 	infile.open(filename.c_str());
 	if (!infile)
@@ -19,31 +19,19 @@ int replace(std::string filename, std::string s1, std::string s2)
 	if (!outfile)
 	{
 		std::cout << "Error!\n";
+		infile.close();
 		return (1);
 	}
 
-	while(!infile.eof())
+	while(getline(infile, buffer))
 	{
-		int i = 0;
-		buffer = "";
-
-		infile.read(buf, sizeof(char));
-		while (!infile.eof() && s1[i] && s1[i] == *buf)
+		while ((pos = buffer.find(s1)) != std::string::npos)
 		{
-			buffer += *buf;
-			i++;
-			infile.read(buf, sizeof(char));
+			outfile << buffer.substr(0, pos) << s2;
+			buffer = buffer.substr(pos + s1.size());
 		}
-
-		buffer += *buf;
-		if (s1[i] == '\0')
-			outfile.write((s2 + *buf).c_str(), (s2 + *buf).length());
-		else
-			outfile.write(buffer.c_str(), buffer.length());
-
+		outfile << buffer << std::endl;
 	}
-
-	delete buf;
 
 	return (0);
 }
@@ -55,8 +43,6 @@ int main(int argc, char **argv)
 		std::cout << "Error!\n";
 		return (1);
 	}
-	
-	printf("%s\n", argv[2]);
 
 	return replace(argv[1], argv[2], argv[3]);
 }
