@@ -113,6 +113,7 @@ Fixed Fixed::operator-(const Fixed &object) const
 Fixed Fixed::operator*(const Fixed &object) const
 {
 	Fixed result(*this);
+
 	result._value *= object._value;
 	result._value >>= _fractional_bits;
 	return result;
@@ -122,7 +123,7 @@ Fixed Fixed::operator/(const Fixed &object) const
 {
 	Fixed result(*this);
 	result._value /= object._value;
-	// result._value <<= _fractional_bits;
+	result._value <<= _fractional_bits;
 	
 	return result;
 }
