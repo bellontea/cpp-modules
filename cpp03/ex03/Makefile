@@ -1,4 +1,4 @@
-NAME		=	point
+NAME		=	diamond_trap
 
 SRC 		=	$(shell ls *cpp)
 OBJ			=	$(SRC:.cpp=.o)

@@ -1,4 +1,4 @@
-NAME		=	point
+NAME		=	clap_trap
 
 SRC 		=	$(shell ls *cpp)
 OBJ			=	$(SRC:.cpp=.o)
