@@ -16,13 +16,15 @@ Dog::~Dog()
 Dog::Dog(const Dog &obj) : Animal(obj)
 {
 	std::cout << "Copy constructor of Dog called" << std::endl;
+	_brain = NULL;
 	this->operator=(obj);
 }
 
 Dog& Dog::operator=(const Dog &obj)
 {
 	Animal::operator=(obj);
-	delete _brain;
+	if (_brain)
+		delete _brain;
 	_brain = new Brain(*obj._brain);
 	return *this;
 }

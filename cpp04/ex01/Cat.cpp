@@ -16,13 +16,15 @@ Cat::~Cat()
 Cat::Cat(const Cat &obj) : Animal(obj)
 {
 	std::cout << "Copy constructor of Cat called" << std::endl;
+	_brain = NULL;
 	this->operator=(obj);
 }
 
 Cat& Cat::operator=(const Cat &obj)
 {
 	Animal::operator=(obj);
-	delete _brain;
+	if (_brain)
+		delete _brain;
 	_brain = new Brain(*obj._brain);
 	return *this;
 }
