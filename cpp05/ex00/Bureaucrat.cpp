@@ -12,9 +12,10 @@ Bureaucrat::Bureaucrat(const std::string name, const int grade) : _name(name), _
 {
 	if (grade > min_grade)
 		throw GradeTooLowException();
-	if (grade < max_grade)
+	else if (grade < max_grade)
 		throw GradeTooHighException();
-	_grade = grade;
+	else
+		_grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &copy) : _name(copy._name), _grade(copy._grade)
@@ -48,14 +49,16 @@ void Bureaucrat::incrementGrade()
 {
 	if (_grade - 1 < max_grade)
 		throw GradeTooHighException();
-	_grade--;
+	else
+		_grade--;
 }
 
 void Bureaucrat::decremendGrade()
 {
 	if (_grade + 1 > min_grade)
 		throw GradeTooLowException();
-	_grade++;
+	else
+		_grade++;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
