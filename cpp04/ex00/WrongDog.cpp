@@ -14,7 +14,6 @@ WrongDog::~WrongDog()
 WrongDog::WrongDog(const WrongDog &obj) : WrongAnimal(obj)
 {
 	std::cout << "Copy constructor of WrongDog called" << std::endl;
-	this->operator=(obj);
 }
 
 WrongDog& WrongDog::operator=(const WrongDog &obj)

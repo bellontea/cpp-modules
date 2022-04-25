@@ -10,6 +10,7 @@ protected:
 	std::string type;
 
 public:
+	AMateria();
 	AMateria(std::string const &type);
 	AMateria(const AMateria& copy);
 	virtual ~AMateria();

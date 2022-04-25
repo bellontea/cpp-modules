@@ -6,14 +6,6 @@
 
 int main()
 {
-	const AAnimal* j = new Dog();
-	const AAnimal* i = new Cat();
-
-	delete j;
-	delete i;
-
-	std::cout << std::endl;
-
 	AAnimal **arr = new AAnimal* [ANIMALS_COUNT];
 
 	for (size_t i = 0; i < ANIMALS_COUNT; i++)

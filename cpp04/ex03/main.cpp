@@ -12,18 +12,18 @@ int main()
 	src->learnMateria(ice);
 	src->learnMateria(cure);
 
-	ICharacter* dude = new Character("dude");
+	ICharacter* me = new Character("me");
 
-	dude->equip(src->createMateria("ice"));
-	dude->equip(src->createMateria("cure"));
+	me->equip(src->createMateria("ice"));
+	me->equip(src->createMateria("cure"));
 
 	ICharacter* bob = new Character("bob");
 	
-	dude->use(0, *bob);
-	dude->use(1, *bob);
+	me->use(0, *bob);
+	me->use(1, *bob);
 
 	delete bob;
-	delete dude;
+	delete me;
 	delete src;
 	delete ice;
 	delete cure;

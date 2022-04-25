@@ -1,7 +1,12 @@
 #include "AMateria.hpp"
 #include "ICharacter.hpp"
 
-AMateria::AMateria(std::string const &type = "none")
+AMateria::AMateria()
+{
+	this->type = "none";
+}
+
+AMateria::AMateria(std::string const &type)
 {
 	this->type = type;
 }

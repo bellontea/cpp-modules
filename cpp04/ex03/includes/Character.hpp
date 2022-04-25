@@ -10,7 +10,8 @@ private:
 	AMateria		*materials[4];
 
 public:
-	Character(std::string name = "none");
+	Character();
+	Character(std::string name);
 	Character(const Character& copy);
 	~Character();
 

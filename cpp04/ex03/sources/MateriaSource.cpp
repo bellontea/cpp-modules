@@ -8,6 +8,8 @@ MateriaSource::MateriaSource()
 
 MateriaSource::MateriaSource(const MateriaSource& copy)
 {
+	for (int i = 0; i < 4; i++)
+		materials[i] = NULL;
 	operator=(copy);
 }
 
@@ -21,8 +23,12 @@ MateriaSource::~MateriaSource()
 MateriaSource& MateriaSource::operator=(const MateriaSource& copy)
 {
 	for (unsigned int i = 0; i < 4; i++)
+	{
+		if (materials[i])
+			delete materials[i];
 		if(copy.materials[i])
 			materials[i] = copy.materials[i]->clone();
+	}
 	return *this;
 }
 
@@ -33,9 +39,10 @@ void MateriaSource::learnMateria(AMateria* materia)
 	for (i = 0; i < 4; i++)
 	{
 		if (!materials[i])
+		{
 			materials[i] = materia->clone();
-		if (materials[i]->getType() == materia->getType())
-			return;
+			return ;
+		}
 	}
 }
 

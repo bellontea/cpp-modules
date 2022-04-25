@@ -1,5 +1,12 @@
 #include "Character.hpp"
 
+Character::Character()
+{
+	this->name = "name";
+	for (int i = 0; i < 4; i++)
+		materials[i] = NULL;
+}
+
 Character::Character(std::string name)
 {
 	this->name = name;
@@ -9,6 +16,8 @@ Character::Character(std::string name)
 
 Character::Character(const Character& copy)
 {
+	for (int i = 0; i < 4; i++)
+		materials[i] = NULL;
 	operator=(copy);
 }
 
@@ -23,8 +32,12 @@ Character& Character::operator=(const Character& copy)
 {
 	name = copy.name;
 	for (unsigned int i = 0; i < 4; i++)
+	{
+		if (materials[i])
+			delete materials[i];
 		if(copy.materials[i])
 			materials[i] = copy.materials[i]->clone();
+	}
 	return *this;
 }
 
