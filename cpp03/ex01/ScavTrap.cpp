@@ -18,7 +18,6 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 
 ScavTrap::ScavTrap(const ScavTrap& object) : ClapTrap(object)
 {
-	operator=(object);
 	std::cout << "ScavTrap " << _name << "copied and created!" << std::endl;
 }
 
@@ -40,7 +39,7 @@ void ScavTrap::guardGate()
 
 void ScavTrap::attack(const std::string& target)
 {
-	if (_energy > 0)
+	if (_energy > 0 && _health > 0)
 	{
 		_energy--;
 		std::cout << "ScavTrap " << _name
@@ -50,28 +49,5 @@ void ScavTrap::attack(const std::string& target)
 				<< " energy points remains." << std::endl;
 	}
 	else
-		std::cout << "Not enough energy points!" << std::endl;
-}
-
-void ScavTrap::takeDamage(unsigned int amount)
-{
-	_health -= amount;
-	std::cout << "ScavTrap " << _name 
-			<< " recieved " << amount
-			<< " points of damage!" << std::endl
-			<< "hit " << _health << std::endl;
-}
-
-void ScavTrap::beRepaired(unsigned int amount)
-{
-	if (_energy > 0)
-	{
-		_energy--;
-		_health += amount;
-		std::cout << "ScavTrap " << _name
-				<< " has repaired himself! " << _energy
-				<< " energy points remains." << std::endl;
-	}
-	else
-		std::cout << "Not enough energy points!" << std::endl;
+		std::cout << "Not enough energy or hit points!" << std::endl;
 }
