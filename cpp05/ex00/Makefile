@@ -1,4 +1,4 @@
-NAME		=	form
+NAME		=	bureaucrat
 
 SRC 		=	$(shell ls *cpp)
 OBJ			=	$(SRC:.cpp=.o)

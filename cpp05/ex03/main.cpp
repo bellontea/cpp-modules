@@ -8,15 +8,19 @@
 int main()
 {
 	Intern someRandomIntern;
-	Bureaucrat maaaan("man", 1);
+	Bureaucrat man("man", 1);
+	Form* rrf = NULL;
 	try
 	{
-		Form* rrf;
-		rrf = someRandomIntern.makeForm("RobodtomyRequestForm", "Bender");
-		maaaan.signForm(*rrf);
+		rrf = someRandomIntern.makeForm("RobotomyRequestForm", "Bender");
+		man.signForm(*rrf);
+		man.executeForm(*rrf);
+
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
 	}
+	if(rrf)
+		delete rrf;
 }

@@ -52,7 +52,7 @@ int main()
 	try
 	{
 		std::cout << "Test5: ";
-		Bureaucrat b1("Test15", -151);
+		Bureaucrat b1("Test5", -151);
 		std::cout << b1 << std::endl;
 	}
 	catch(const std::exception& e)

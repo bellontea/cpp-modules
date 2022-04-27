@@ -23,10 +23,7 @@ Form::Form(const Form &copy) : _name(copy._name), _signed(copy._signed),
 
 Form& Form::operator=(const Form& copy)
 {
-	(std::string)_name = copy._name;
 	_signed = copy._signed;
-	*((int *)&_grade_sign) = copy._grade_sign;
-	*((int *)&_grade_execute) = copy._grade_execute;
 	return *this;
 }
 
