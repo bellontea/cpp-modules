@@ -7,7 +7,7 @@
 
 void cast_char(char arg)
 {
-	std::cout << "char: " << arg << std::endl;
+	std::cout << "char: '" << arg << "'" << std::endl;
 	std::cout << "int: " << static_cast<int> (arg) << std::endl;
 	std::cout << std::fixed << std::setprecision(1) << "float: " << static_cast<float> (arg) << "f" << std::endl;
 	std::cout << std::fixed << std::setprecision(1) << "double: " << static_cast<double> (arg) << std::endl;
@@ -15,10 +15,10 @@ void cast_char(char arg)
 
 void cast_int(int arg)
 {
-	if (arg > 255 || arg < -255)
+	if (arg > 127 || arg < -128)
 		std::cout << "char: impossible\n";
 	else if(isprint(arg))
-		std::cout << "char: " << static_cast<char> (arg) << std::endl;
+		std::cout << "char: '" << static_cast<char> (arg) << "'" << std::endl;
 	else 
 		std::cout << "char: Non displayable\n";
 	std::cout << "int: " << arg << std::endl;
@@ -28,39 +28,38 @@ void cast_int(int arg)
 
 void cast_float(float arg)
 {
-	if (arg > 255 || arg < -255)
+	if (arg > 127 || arg < -128)
 		std::cout << "char: impossible\n";
 	else if(isprint(arg))
-		std::cout << "char: " << static_cast<char> (arg) << std::endl;
+		std::cout << "char: '" << static_cast<char> (arg) << "'" << std::endl;
 	else 
 		std::cout << "char: Non displayable\n";
-	
-	if (arg >= INT32_MIN && arg <= INT32_MAX)
-		std::cout << "int: " << static_cast<int> (arg) << std::endl;
-	else
-		std::cout << "int: impossible\n";
-	
-	std::cout << std::fixed << std::setprecision(1) << "float: " << arg << "f" << std::endl;
-	std::cout << std::fixed << std::setprecision(1) << "double: " << static_cast<float> (arg) << std::endl;
-	
-}
-
-void cast_double(double arg)
-{
-	if (arg > 255 || arg < -255)
-		std::cout << "char: impossible\n";
-	else if(isprint(arg))
-		std::cout << "char: " << static_cast<char> (arg) << std::endl;
-	else 
-		std::cout << "char: Non displayable\n";
-	
-	if (arg >= INT32_MIN && arg <= INT32_MAX)
+	if (static_cast<double>(arg) >= INT32_MIN && static_cast<double>(arg) <= INT32_MAX)
 		std::cout << "int: " << static_cast<int> (arg) << std::endl;
 	else
 		std::cout << "int: impossible\n";
 	
 	std::cout << std::fixed << std::setprecision(1) << "float: " << arg << "f" << std::endl;
 	std::cout << std::fixed << std::setprecision(1) << "double: " << static_cast<double> (arg) << std::endl;
+	
+}
+
+void cast_double(double arg)
+{
+	if (arg > 127 || arg < -128)
+		std::cout << "char: impossible\n";
+	else if(isprint(arg))
+		std::cout << "char: '" << static_cast<char> (arg) << "'" << std::endl;
+	else 
+		std::cout << "char: Non displayable\n";
+	
+	if (arg >= INT32_MIN && arg <= INT32_MAX)
+		std::cout << "int: " << static_cast<int> (arg) << std::endl;
+	else
+		std::cout << "int: impossible\n";
+	
+		std::cout << std::fixed << std::setprecision(1) << "float: " << static_cast<float> (arg) << "f" << std::endl;
+	std::cout << std::fixed << std::setprecision(1) << "double: " << arg << std::endl;
 }
 
 void print_error()
@@ -141,7 +140,7 @@ void convert(std::string arg)
 		cast_float(val_float);
 		return ;
 	}
-
+	
 	if (arg == "nan")
 	{
 		print_double_pseudo(arg);

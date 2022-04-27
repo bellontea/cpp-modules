@@ -16,7 +16,7 @@ int	main() {
 
 	Data	data;
 
-	data.name = "Jan";
+	data.name = "Data";
 
 	std::cout << "before serialization:	" << &data << std::endl;
 
