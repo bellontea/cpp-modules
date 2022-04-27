@@ -26,7 +26,7 @@ void cast_int(int arg)
 	std::cout << std::fixed << std::setprecision(1) << "double: " << static_cast<double> (arg) << std::endl;
 }
 
-void cast_float(float arg)
+void cast_float(float arg, int point)
 {
 	if (arg > 127 || arg < -128)
 		std::cout << "char: impossible\n";
@@ -39,12 +39,14 @@ void cast_float(float arg)
 	else
 		std::cout << "int: impossible\n";
 	
-	std::cout << std::fixed << std::setprecision(1) << "float: " << arg << "f" << std::endl;
-	std::cout << std::fixed << std::setprecision(1) << "double: " << static_cast<double> (arg) << std::endl;
+	if (point > 0)
+		point--;
+	std::cout << std::fixed << std::setprecision(point) << "float: " << arg << "f" << std::endl;
+	std::cout << std::fixed << std::setprecision(point) << "double: " << static_cast<double> (arg) << std::endl;
 	
 }
 
-void cast_double(double arg)
+void cast_double(double arg, int point)
 {
 	if (arg > 127 || arg < -128)
 		std::cout << "char: impossible\n";
@@ -58,8 +60,8 @@ void cast_double(double arg)
 	else
 		std::cout << "int: impossible\n";
 	
-		std::cout << std::fixed << std::setprecision(1) << "float: " << static_cast<float> (arg) << "f" << std::endl;
-	std::cout << std::fixed << std::setprecision(1) << "double: " << arg << std::endl;
+		std::cout << std::fixed << std::setprecision(point) << "float: " << static_cast<float> (arg) << "f" << std::endl;
+	std::cout << std::fixed << std::setprecision(point) << "double: " << arg << std::endl;
 }
 
 void print_error()
@@ -68,23 +70,6 @@ void print_error()
 	std::cout << "int: impossible\n";
 	std::cout << "float: impossible\n";
 	std::cout << "double: impossible\n";
-}
-
-void print_float_pseudo(std::string value)
-{
-	std::cout << "char: impossible\n";
-	std::cout << "int: impossible\n";
-	std::cout << "float: " << value << std::endl;
-	value[value.size() - 1] = 0;
-	std::cout << "double: " << value << std::endl;
-}
-
-void print_double_pseudo(std::string value)
-{
-	std::cout << "char: impossible\n";
-	std::cout << "int: impossible\n";
-	std::cout << "float: " << value << "f" << std::endl;
-	std::cout << "double: " << value << std::endl;
 }
 
 void convert(std::string arg)
@@ -100,12 +85,17 @@ void convert(std::string arg)
 	}
 
 	int i = 1;
+	int point = 0;
 	for (; i < size; i++)
 	{
+		if (arg[i] == '.')
+			point = i;
 		if (!isdigit(arg[i]))
 			break;
 	}
 
+	if (point > 0)
+		point = size - point - 1;
 	if (i == size)
 	{
 		long val_int = strtol(arg.c_str(), &endp, 10);
@@ -118,18 +108,8 @@ void convert(std::string arg)
 		return ;
 	}
 
-	if (arg[size - 1] == 'f')
+	if (arg[size - 1] == 'f' && arg.compare(std::string("-+").find(arg[0]) != std::string::npos, 4, "inf"))
 	{
-		if (arg == "+inf" || arg == "-inf")
-		{
-			print_double_pseudo(arg);
-			return ;
-		}
-		if (arg == "+inff" || arg == "-inff" || arg == "nanf")
-		{
-			print_float_pseudo(arg);
-			return ;
-		}
 		arg[size - 1] = 0;
 		float val_float = strtof(arg.c_str(), &endp);
 		if (errno == ERANGE || *endp != 0)
@@ -137,22 +117,17 @@ void convert(std::string arg)
 			print_error();
 			return ;
 		}
-		cast_float(val_float);
+		cast_float(val_float, point);
 		return ;
 	}
-	
-	if (arg == "nan")
-	{
-		print_double_pseudo(arg);
-		return ;
-	}
+
 	double val_double = strtod(arg.c_str(), &endp);
 	if (errno == ERANGE || *endp != 0)
 	{
 		print_error();
 		return ;
 	}
-	cast_double(val_double);
+	cast_double(val_double, point);
 	return ;
 }
 
