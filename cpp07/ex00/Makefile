@@ -17,7 +17,7 @@ all 				: $(NAME)
 $(NAME) 			: $(OBJS)
 					$(CC) $(CFLAGS) $(SRC) -o $(NAME)
 
-$(OBJS_DIR)%.o		:	%.cpp
+$(OBJS_DIR)%.o		:	%.cpp ./*hpp
 					mkdir -p $(OBJS_DIR)
 					c++ $(CFLAGS) -c $< -o $@
 

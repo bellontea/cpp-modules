@@ -1,4 +1,4 @@
-NAME		=	iter
+NAME		=	array
 
 SRC 		=	$(shell ls *cpp)
 OBJ			=	$(SRC:.cpp=.o)
