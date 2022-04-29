@@ -33,16 +33,6 @@ void Span::addNumber(int number)
 	_values.insert(number);
 }
 
-template <typename T>
-void Span::addNumber(T iter_begin, T iter_end)
-{
-  while (iter_begin != iter_end)
-  {
-    this->addNumber(*iter_begin);
-    iter_begin++;
-  }
-}
-
 int Span::shortestSpan()
 {
 	if (_values.size() < 2)
