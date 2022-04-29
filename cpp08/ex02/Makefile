@@ -1,4 +1,4 @@
-NAME		=	span
+NAME		=	stack
 
 SRC 		=	$(shell ls *.cpp)
 OBJ			=	$(SRC:.cpp=.o)

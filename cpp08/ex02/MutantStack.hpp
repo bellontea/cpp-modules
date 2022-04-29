@@ -14,21 +14,21 @@ public:
 	MutantStack& operator=(const MutantStack& copy);
 
 	typedef typename std::stack<T>::container_type::iterator iterator;
-	typedef typename std::stack<T>::container_type::iterator const_iterator;
-	typedef typename std::stack<T>::container_type::iterator reverse_iterator;
-	typedef typename std::stack<T>::container_type::iterator const_reverse_iterator;
+	typedef typename std::stack<T>::container_type::const_iterator const_iterator;
+	typedef typename std::stack<T>::container_type::reverse_iterator reverse_iterator;
+	typedef typename std::stack<T>::container_type::const_reverse_iterator const_reverse_iterator;
 
 	iterator begin();
 	iterator end();
 
-	const_iterator cbegin();
-	const_iterator cend();
+	const_iterator cbegin() const;
+	const_iterator cend() const;
 
 	reverse_iterator rbegin();
 	reverse_iterator rend();
 
-	const_reverse_iterator crbegin();
-	const_reverse_iterator crend();
+	const_reverse_iterator crbegin() const;
+	const_reverse_iterator crend() const;
 };
 
 template <typename T>
@@ -67,13 +67,13 @@ typename MutantStack<T>::iterator MutantStack<T>::end()
 }
 
 template <typename T>
-typename MutantStack<T>::const_iterator MutantStack<T>::cbegin()
+typename MutantStack<T>::const_iterator MutantStack<T>::cbegin() const
 {
 	return this->c.cbegin();
 }
 
 template <typename T>
-typename MutantStack<T>::const_iterator MutantStack<T>::cend()
+typename MutantStack<T>::const_iterator MutantStack<T>::cend() const
 {
 	return this->c.cend();
 }
@@ -91,13 +91,13 @@ typename MutantStack<T>::reverse_iterator MutantStack<T>::rend()
 }
 
 template <typename T>
-typename MutantStack<T>::const_reverse_iterator MutantStack<T>::crbegin()
+typename MutantStack<T>::const_reverse_iterator MutantStack<T>::crbegin() const
 {
 	return this->c.crbegin();
 }
 
 template <typename T>
-typename MutantStack<T>::const_reverse_iterator MutantStack<T>::crend()
+typename MutantStack<T>::const_reverse_iterator MutantStack<T>::crend() const
 {
 	return this->c.crend();
 }
